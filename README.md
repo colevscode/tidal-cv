@@ -25,7 +25,7 @@ The following cv and gate synths are created by tidal-cv:
 
 For an example use of these synths within tidal, see `tidal-example.hs`.
 
-## variables
+## Variables
 
 * **~minCv**: A value that represents the minimum frequency in octaves below middle A. Used to calibrate 1v/octave. Default is `-1`.
 * **~maxCv**: A value that represents max frequency in octaves above middle A. Default is `+9`.
@@ -34,7 +34,7 @@ For an example use of these synths within tidal, see `tidal-example.hs`.
 
 ## Calibration
 
-I suggest generating a cv clock output, use it to gate an oscillator on your modular synth, and simultaneously generate a simple beat pattern from tidal. Then, listening to the two tracks, adjust the `~latencyCorrection` value until they're in sync. Alternately you can patch both to a scope and line them up visually.
+It may be necessary to calibrate the delay time used to send messages to the cv synths. I suggest generating a cv clock output, use it to gate an oscillator on your modular synth, and simultaneously generate a simple beat pattern from tidal. Then, listening to the two tracks, adjust the `~latencyCorrection` value until they're in sync. Alternately you can patch both to a scope and line them up visually.
 
 Example:
 
