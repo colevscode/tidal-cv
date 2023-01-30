@@ -12,7 +12,7 @@ Optional: adjust supercollider's latency. The default is `0.02`. I bump it to `0
 
 ## Usage
 
-Note: generally the synths defined by tidal-cv send DC signals with values between `-1` and `1`. What your soundcard does with this depends on how it's configured. I'm using an [ES-9](https://www.expert-sleepers.co.uk/es9.html) which multiplies the signal by 10, generating `-10v` to `+10v`. 
+Note: generally the synths defined by tidal-cv send DC signals with values between `-1` and `1`. What your audio adapter does with this depends on how it's configured. I'm using an [ES-9](https://www.expert-sleepers.co.uk/es9.html) which multiplies the signal by 10, generating `-10v` to `+10v`. 
 
 The following cv and gate synths are created by tidal-cv:
 
