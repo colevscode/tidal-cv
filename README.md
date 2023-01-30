@@ -8,7 +8,7 @@ Place the contents of `startup-include.scd` in your supercollider `startup.scd` 
 
 Follow the calibration procedure below.
 
-Optional: adjust supercollider's latency. The default is `0.02`. I bump it to `0.05` to give the server a little more time to process events, and ensure the cv synths can correctly output the signal.
+Optional: adjust supercollider's latency. The default is `0.02`. I bump it to `0.05` to give the server a little more time to process events, and ensure the cv synths can correctly output the signal. Example: `s.latency = 0.05`.
 
 ## Usage
 
