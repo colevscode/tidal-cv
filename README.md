@@ -23,6 +23,8 @@ The following cv and gate synths are created by tidal-cv:
 * **gate0_trig - gateN_trig**: Synths that trigger a +10v pulse for a short hold period defined by `~triggerHold`.
 * **gate0_slew - gateN_slew**: Slew control for the gate synths.
 
+For an example use of these synths within tidal, see [tidal_example.hs].
+
 ## variables
 
 * **~minCv**: A value that represents the minimum frequency in octaves below middle A. Used to calibrate 1v/octave. Default is `-1`.
