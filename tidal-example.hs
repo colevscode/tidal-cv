@@ -30,3 +30,6 @@ d1 $ stack [
 -- send a clock signal to channel 7
 -- this outputs a sequence of triggers (short pulses of +10v)
 d3 $ n "1!4" # s "gate3_trig"
+
+-- cleanup
+once $ stack [s "cv1_off", s "gate1_off", s "gate3_off"]

@@ -1,0 +1,8 @@
+(
+	\name: 			    "TidalCV",
+	\summary:		    "Superdirt extensions for continuous CV / gate",
+	\author: 		    "Cole Krumbholz",
+	\since: 	      "2023",
+	\dependencies:  ["SuperDirt"],
+	\version:       "0.0.1"
+)
