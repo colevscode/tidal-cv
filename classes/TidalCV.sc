@@ -1,8 +1,9 @@
 TidalCV {
-  var <>minOct, <>maxOct, <>triggerHold, <>latencyCorrection;
+  var <>minOct, <>maxOct, <>triggerHold, <>latencyCorrection, <>offsets;
 
   *new { |dirt, minOct, maxOct, triggerHold, latencyCorrection|
     var instance = super.newCopyArgs(minOct, maxOct, triggerHold, latencyCorrection);
+    instance.offsets = Array.fill(dirt.orbits.size, {|i| 0}); 
     instance.load(dirt);
     ^instance;
   }
@@ -26,7 +27,7 @@ TidalCV {
       });
 
       dirt.soundLibrary.addSynth(('cv'++i).asSymbol, (play: {
-        var latency = (~latency ? 0) + (this.latencyCorrection ? 0);
+        var latency = (~latency ? 0) + (this.latencyCorrection ? 0) + this.offsets[i];
         var n = ~n;
         Ndef(cvtag).wakeUp; // make sure the Ndef runs
         thisThread.clock.sched(latency, {
@@ -35,7 +36,7 @@ TidalCV {
       }));
 
       dirt.soundLibrary.addSynth(('cv'++i++'_pitch').asSymbol, (play: {
-        var latency = (~latency ? 0) + (this.latencyCorrection ? 0);
+        var latency = (~latency ? 0) + (this.latencyCorrection ? 0) + this.offsets[i];
         var freq = ~freq;
         Ndef(cvtag).wakeUp; // make sure the Ndef runs
         thisThread.clock.sched(latency, {
@@ -44,7 +45,7 @@ TidalCV {
       }));
 
       dirt.soundLibrary.addSynth(('cv'++i++'_slew').asSymbol, (play: {
-        var latency = (~latency ? 0) + (this.latencyCorrection ? 0);
+        var latency = (~latency ? 0) + (this.latencyCorrection ? 0) + this.offsets[i];
         var n = ~n;
         Ndef(cvtag).wakeUp; // make sure the Ndef runs
         thisThread.clock.sched(latency, {
@@ -71,7 +72,7 @@ TidalCV {
       });
 
       dirt.soundLibrary.addSynth(('gate'++i).asSymbol, (play: {
-        var latency = (~latency ? 0) + (this.latencyCorrection ? 0);
+        var latency = (~latency ? 0) + (this.latencyCorrection ? 0) + this.offsets[i];
         var n = ~n;
         Ndef(gatetag).wakeUp; // make sure the Ndef runs
         thisThread.clock.sched(latency, {
@@ -80,7 +81,7 @@ TidalCV {
       }));
 
       dirt.soundLibrary.addSynth(('gate'++i++'_slew').asSymbol, (play: {
-        var latency = (~latency ? 0) + (this.latencyCorrection ? 0);
+        var latency = (~latency ? 0) + (this.latencyCorrection ? 0)  + this.offsets[i];
         var n = ~n;
         Ndef(gatetag).wakeUp; // make sure the Ndef runs
         thisThread.clock.sched(latency, {
@@ -89,13 +90,13 @@ TidalCV {
       }));
 
       dirt.soundLibrary.addSynth(('gate'++i++'_trig').asSymbol, (play: {
-        var latency = (~latency ? 0) + (this.latencyCorrection ? 0);
-        var triggerTime = latency + (this.triggerHold ? 0.05);
+        var latency = (~latency ? 0) + (this.latencyCorrection ? 0) + this.offsets[i];
+        var waitTime = latency + (this.triggerHold ? 0.05);
         Ndef(gatetag).wakeUp; // make sure the Ndef runs
         thisThread.clock.sched(latency, {
-          Ndef(gatetag).set(\level, 1.0);
+          Ndef(gatetag).set(\level, 0.5);
         });
-        thisThread.clock.sched(triggerTime, {
+        thisThread.clock.sched(waitTime, {
           Ndef(gatetag).set(\level, -0.01);
         });
       }));
